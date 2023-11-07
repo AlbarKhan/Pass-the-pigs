@@ -44,6 +44,23 @@ body {
   border: 0px;
 }
 
+.msg.hidden {
+  width: 200px;
+  display: none;
+}
+
+.msg {
+  width: 200px;
+  background-color: rgba(255, 255, 255, 0.558);
+  color: green;
+  font-size: 140px;
+  padding: 20px 0px;
+  font-size: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
 #player0-section {
   color: black;
   background-color: white;

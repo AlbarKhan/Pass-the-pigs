@@ -21,6 +21,7 @@
       class="main-wrapper d-flex justify-content-center align-items-center h-100"
     >
       <div class="container wrapper">
+        <div class="msg hidden h1 fw-bold w-100"></div>
         <div class="row">
           <div
             class="col-md-6 d-flex flex-column align-items-center border"
@@ -28,7 +29,7 @@
           >
             <div class="head text-center">
               <div class="h1">Player 1</div>
-              <div class="totalScorePlayer1 h1 mt-4">6</div>
+              <div class="totalScorePlayer0 h1 mt-4">0</div>
             </div>
             <div class="currentScoreDiv text-center px-5 py-3">
               <p>Current</p>
@@ -40,7 +41,7 @@
             id="player1-section"
           >
             <div class="h1">Player 2</div>
-            <div class="totalScorePlayer2 h1 mt-2">0</div>
+            <div class="totalScorePlayer1 h1 mt-2">0</div>
             <div class="currentScoreDiv text-center px-5 py-3">
               <p>Current</p>
               <span class="currentScore1">0</span>
@@ -48,13 +49,16 @@
           </div>
 
           <div class="controls">
-            <button
-              type="button"
-              class="controls-button text-center p-2"
-              id="newGame"
-            >
-              New Game
-            </button>
+            <div>
+              <button
+                type="button"
+                class="controls-button text-center p-2"
+                id="newGame"
+              >
+                New Game
+              </button>
+            </div>
+
             <div class="dice hidden">
               <img
                 src="images/dice-2.png"
