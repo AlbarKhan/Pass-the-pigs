@@ -10,18 +10,24 @@ const winMsg = document.querySelector(".msg");
 currentScroe0.textContent = "0";
 currentScroe1.textContent = "0";
 let activePlayer = 0;
+
+// Function expression to display the active player
+
 const displayActice = function (active) {
   return document.getElementById(`player${active}-section`);
 };
 
+// Function expression to display the current score
 const displayCurrentScore = function (curplayer, curscore) {
   return (document.querySelector(`.currentScore${curplayer}`).textContent =
     curscore);
 };
 
+// Event Listeer when a user press the roll Dice button
+
 document.getElementById("roll").addEventListener("click", function () {
   const randnum = Math.trunc(Math.random() * 6) + 1;
-  if (Scroe[0] >= 100 || Scroe[1] >= 100) {
+  if (Scroe[0] >= 10 || Scroe[1] >= 10) {
     return;
   }
   if (randnum > 1) {
@@ -46,13 +52,15 @@ document.getElementById("roll").addEventListener("click", function () {
   }
 });
 
+//  Event Listner When  a User wants to hold their current point
+
 document.getElementById("hold").addEventListener("click", function () {
   Scroe[`${activePlayer}`] += currentScroe;
   document.querySelector(`.totalScorePlayer${activePlayer}`).textContent =
     Scroe[activePlayer];
   currentScroe = 0;
   displayCurrentScore(activePlayer, currentScroe);
-  if (Scroe[0] >= 100 || Scroe[1] >= 100) {
+  if (Scroe[0] >= 10 || Scroe[1] >= 10) {
     winMsg.classList.remove("hidden");
     winMsg.textContent = `Player ${activePlayer + 1} Wins`;
     return;
@@ -68,6 +76,8 @@ document.getElementById("hold").addEventListener("click", function () {
   }
 });
 
+// Event listner to restart the game
+
 document.getElementById("newGame").addEventListener("click", function () {
   currentScroe = 0;
   Scroe[0] = 0;
@@ -80,4 +90,5 @@ document.getElementById("newGame").addEventListener("click", function () {
   activePlayer = 0;
   displayActice(activePlayer).style.opacity = "0.6";
   displayActice(activePlayer + 1).style.opacity = 0.3;
+  winMsg.classList.add("hidden");
 });
