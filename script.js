@@ -14,22 +14,23 @@ const displayActice = function (active) {
   return document.getElementById(`player${active}-section`);
 };
 
+const displayCurrentScore = function (curplayer, curscore) {
+  return (document.querySelector(`.currentScore${curplayer}`).textContent =
+    curscore);
+};
+
 document.getElementById("roll").addEventListener("click", function () {
   const randnum = Math.trunc(Math.random() * 6) + 1;
-
-  if (Scroe[0] >= 10 || Scroe[1] >= 10) {
-    winMsg.textContent = `Player ${activePlayer} Wins`;
+  if (Scroe[0] >= 100 || Scroe[1] >= 100) {
     return;
   }
-
   if (randnum > 1) {
     document.querySelector(".dice").classList.remove("hidden");
     document.getElementById("dice-image").src = `images/dice-${randnum}.png`;
     currentScroe += randnum;
-    document.querySelector(`.currentScore${activePlayer}`).textContent =
-      currentScroe;
+    displayCurrentScore(activePlayer, currentScroe);
   } else {
-    document.querySelector(`.currentScore${activePlayer}`).textContent = 0;
+    displayCurrentScore(activePlayer, 0);
 
     if (activePlayer === 0) {
       activePlayer = 1;
@@ -50,11 +51,10 @@ document.getElementById("hold").addEventListener("click", function () {
   document.querySelector(`.totalScorePlayer${activePlayer}`).textContent =
     Scroe[activePlayer];
   currentScroe = 0;
-  document.querySelector(`.currentScore${activePlayer}`).textContent =
-    currentScroe;
-  if (Scroe[0] >= 10 || Scroe[1] >= 10) {
-    winMsg.classList.toggle("hidden");
-    winMsg.textContent = `Player ${activePlayer} Wins`;
+  displayCurrentScore(activePlayer, currentScroe);
+  if (Scroe[0] >= 100 || Scroe[1] >= 100) {
+    winMsg.classList.remove("hidden");
+    winMsg.textContent = `Player ${activePlayer + 1} Wins`;
     return;
   }
   if (activePlayer === 0) {
@@ -66,4 +66,18 @@ document.getElementById("hold").addEventListener("click", function () {
     displayActice(activePlayer).style.opacity = "0.6";
     displayActice(activePlayer + 1).style.opacity = 0.3;
   }
+});
+
+document.getElementById("newGame").addEventListener("click", function () {
+  currentScroe = 0;
+  Scroe[0] = 0;
+  Scroe[1] = 0;
+  console.log(currentScroe, Scroe);
+  displayCurrentScore(0, currentScroe);
+  displayCurrentScore(1, currentScroe);
+  document.querySelector(".totalScorePlayer0").textContent = Scroe[0];
+  document.querySelector(".totalScorePlayer1").textContent = Scroe[1];
+  activePlayer = 0;
+  displayActice(activePlayer).style.opacity = "0.6";
+  displayActice(activePlayer + 1).style.opacity = 0.3;
 });
